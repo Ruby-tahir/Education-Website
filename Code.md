@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LearnHub - Education Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg-main: #f4f6f9;
+            --bg-card: #fff;
+            --primary: #e63946;
+            --primary-dark: #b71c1c;
+            --text: #1d1d1f;
+            --muted: #555;
+            --border: #ddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-main);
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .navbar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #e63946, #ffb703);
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 11px;
+            color: #fff;
+            margin: 25px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .courses {
+            margin: 50px 0;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            padding: 22px;
+            transition: .2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .tag {
+            font-size: 12px;
+            background: #ffe5e5;
+            color: var(--primary-dark);
+            border-radius: 12px;
+            padding: 3px 8px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .small {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .contact {
+            margin: 60px 0;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+            padding: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .form-control {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, .2);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .status {
+            margin-top: 11px;
+            font-size: 12px;
+            color: green;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-inner container">
+            <div class="logo">LearnHub</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#courses">Courses</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero container">
+        <h1>Welcome to LearnHub</h1>
+        <p>Grow your skills with professional courses designed for success</p>
+    </section>
+
+    <section id="courses" class="courses container">
+        <h2>Available Courses</h2>
+        <div class="course-grid" id="courseArea"></div>
+    </section>
+
+    <section id="contact" class="contact container">
+        <h2>Contact Us</h2>
+        <form id="msgForm" class="contact-form">
+            <div class="form-group">
+                <label for="fullname">Your Name</label>
+                <input type="text" id="fullname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="mail">Email</label>
+                <input type="email" id="mail" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="note">Message</label>
+                <textarea id="note" class="form-control" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+            <p id="msgStatus" class="status"></p>
+        </form>
+    </section>
+
+    <footer class="footer">© 2025 LearnHub. All rights reserved.</footer>
+
+    <script>
+        const courses = [
+            { title: "Programming Fundamentals", level: "Beginner", duration: "6 weeks", desc: "Start your journey into coding basics." },
+            { title: "English Communication", level: "Beginner", duration: "4 weeks", desc: "Improve your spoken and written English." },
+            { title: "Physics Essentials", level: "Intermediate", duration: "8 weeks", desc: "Master mechanics, waves and electricity." },
+            { title: "Data Structures", level: "Intermediate", duration: "10 weeks", desc: "Learn arrays, linked lists, stacks & trees." },
+            { title: "Calculus I", level: "Advanced", duration: "12 weeks", desc: "Differentiation and Integration from scratch." }
+        ];
+
+        const inbox = [];
+
+        function renderCourses() {
+            const area = document.getElementById("courseArea");
+            area.innerHTML = courses.map(c => `
+        <div class="course-card">
+          <span class="tag">${c.level}</span>
+          <h3>${c.title}</h3>
+          <p>${c.desc}</p>
+          <p class="small">${c.duration}</p>
+        </div>
+      `).join("");
+        }
+        renderCourses();
+
+        const form = document.getElementById("msgForm");
+        const status = document.getElementById("msgStatus");
+
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById("fullname").value.trim(),
+                email: document.getElementById("mail").value.trim(),
+                message: document.getElementById("note").value.trim(),
+                time: new Date().toLocaleString()
+            };
+            inbox.push(data);
+            status.textContent = "✅ Your message has been saved.";
+            form.reset();
+            console.log("Messages:", inbox);
+        });
+    </script>
+</body>
+
+</html>
